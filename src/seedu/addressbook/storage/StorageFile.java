@@ -96,6 +96,12 @@ public class StorageFile {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
 
+        // create empty file if not found
+        } catch (FileNotFoundException fnfe) {
+            final AddressBook empty = new AddressBook();
+            save(empty);
+            
+        // other errors
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
