@@ -4,6 +4,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.StringJoiner;
+
+import seedu.addressbook.data.person.Printable;
 
 /**
  * Utility methods
@@ -34,5 +37,13 @@ public class Utils {
             }
         }
         return true;
+    }
+    
+    public String getPrintableString(Printable... printables){
+    	final StringJoiner joiner = new StringJoiner(", ");
+    	for (Printable p: printables){
+    		joiner.add(p.getPrintableString());
+    	}
+    	return joiner.toString();
     }
 }
